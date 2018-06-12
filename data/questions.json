@@ -1,0 +1,35 @@
+[{
+        "clue1": "H.M. 'Howlin' Man' Murdock",
+        "clue2": "B. A. Baracus",
+        "clue3": " John 'Hannibal' Smith",
+        "clue4": "Templeton 'Faceman' Peck.",
+        "answer":"The A Team"
+    },
+    {
+        "clue1": "Doc",
+        "clue2": "Bashful",
+        "clue3": "Dopey",
+        "clue4": "Grumpy",
+        "answer":"Snow White"   
+    },
+        {
+        "clue1": "Luke Skywalker",
+        "clue2": "Leia Organa",
+        "clue3": "Han Solo",
+        "clue4": "Darth Vader",
+        "answer":"Star Wars"   
+    },
+        {
+        "clue1": "Ironman",
+        "clue2": "Thor",
+        "clue3": "The Hulk",
+        "clue4": "Captain America",
+        "answer":"The Avengers"   
+    },
+        {
+        "clue1": "Peter Venkman",
+        "clue2": "Raymond Stantz",
+        "clue3": "Egon Spengler",
+        "clue4": "Winston Zeddemore",
+        "answer":"Ghostbusters"   
+    }]

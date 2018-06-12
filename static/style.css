@@ -1,0 +1,33 @@
+body{
+    background-color:#7795c4;
+    background-size: cover;
+}
+
+h1 {
+    color: red;
+    text-align: center;
+}
+
+.clues{
+    margin-top:20px;
+}
+
+.box{
+    text-align:center;
+    color: blue;
+    border: 5px solid black;
+    margin-bottom:15px;
+    height: 150px;
+    background-color: #f9f9e5;
+
+}
+
+form{
+    margin-top: 25px;
+}
+
+.prev_answers{
+    margin-top: 25px;
+    border: 5px solid black;
+    height: 200px;
+}
