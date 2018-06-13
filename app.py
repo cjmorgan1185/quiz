@@ -1,4 +1,5 @@
 import os
+import json
 from flask import Flask, redirect, render_template, request
 
 
@@ -10,33 +11,32 @@ def write_to_file(filename, data):
     with open(filename, "a") as file:
         file.writelines(data)
 
-def select_user_name():
-    with open("data/users.txt", "r") as file:
-        lines = file.read()
-    print(lines)
-
-    if "Jo" in lines:
-        print("already in use")
-    else:
-        print("not working")
-
 @app.route ('/', methods=["GET", "POST"])
 def index():
+    """Creates a username and checks this is a unique username. If it is a unique name the name gets added to users.txt"""
     if request.method == "POST":
         with open("data/users.txt", "r") as file:
-            lines = file.read()
+            lines = file.read().split()
         print(lines)
         
         if request.form["username"] in lines:
-            return render_template("index.html") 
+            return "<h3>username already in use</h3>"
         else:
             write_to_file("data/users.txt", request.form["username"] + "\n")
-            return redirect(request.form["username"])
+            user =  request.form["username"] + "/1"
+            return redirect(user)
     return render_template("index.html") 
 
-@app.route('/<username>')
-def user(username):
-    """display users score"""
-    return render_template("quiz.html")
+@app.route('/<username>/<question_number>')
+def questions(username, question_number):
+    question = {}
+    
+    with open("data/questions.json","r") as json_data:
+        data = json.load(json_data)
+        for obj in data:
+            if obj["question"] == question_number:
+                question = obj
+                
+    return render_template("quiz.html", question=question)
     
 app.run(host=os.getenv('IP'), port=int(os.getenv('PORT')), debug=True)
