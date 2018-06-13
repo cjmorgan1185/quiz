@@ -17,7 +17,6 @@ def index():
     if request.method == "POST":
         with open("data/users.txt", "r") as file:
             lines = file.read().split()
-        print(lines)
         
         if request.form["username"] in lines:
             return "<h3>username already in use</h3>"
@@ -27,7 +26,7 @@ def index():
             return redirect(user)
     return render_template("index.html") 
 
-@app.route('/<username>/<question_number>')
+@app.route('/<username>/<question_number>', methods=['GET', 'POST'])
 def questions(username, question_number):
     question = {}
     
@@ -37,6 +36,21 @@ def questions(username, question_number):
             if obj["question"] == question_number:
                 question = obj
                 
+    if request.method == "POST":
+        
+        if request.form["answer"] == question["answer"]:
+            new = int(question_number) + 1
+            open('data/answers.txt', 'w').close()
+            return redirect(username + '/' + str(new))
+        else:
+            write_to_file("data/answers.txt", request.form["answer"] + "\n")
+            with open("data/answers.txt", "r") as file:
+                data = file.read().splitlines()
+                incorrect_answers = []
+                incorrect_answers.append(data)
+                print(incorrect_answers)
+                
     return render_template("quiz.html", question=question)
+    
     
 app.run(host=os.getenv('IP'), port=int(os.getenv('PORT')), debug=True)

@@ -45,7 +45,9 @@
     <div class="container">
         <div class="row">
             <div class="prev_answers col-md-4 offset-md-4">
-
+            {% for i in incorrect_answers %}
+            <p>{{ i }} Test</p>
+            {% endfor %}
             </div>
         </div>
     </div>
