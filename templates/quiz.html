@@ -15,18 +15,18 @@
     <div class="container clues">
         <div class="row">
             <div class="col-md-6">
-                <div class="box col-md-6 offset-md-6">{{ question.clue1 }}</div>
+                <div class="box col-md-6 offset-md-6"><p>{{ question.clue1 }}</p></div>
             </div>
             <div class="col-md-6">
-                <div class="box col-md-6 ">{{ question.clue2 }}</div>
+                <div class="box col-md-6 "><p>{{ question.clue2 }}</p></div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-6">
-                <div class="box col-md-6 offset-md-6">{{ question.clue3 }}</div>
+                <div class="box col-md-6 offset-md-6"><p>{{ question.clue3 }}</p></div>
             </div>
             <div class="col-md-6">    
-                <div class="box col-md-6 ">{{ question.clue4 }}</div>
+                <div class="box col-md-6 "><p>{{ question.clue4 }}</p></div>
             </div>
         </div>
     </div>
@@ -35,9 +35,8 @@
     <div class="row">
         <div class="col-md-4 offset-md-4">
             <form method="POST">
-                <label for="answer">Answer</label>
-                <input type="text" id="answer" name="answer">
-                <button>Submit Answer</button>
+                <input type="text" id="answer" name="answer" placeholder="Answer"><br>
+                <button id="answer">Submit Answer</button>
             </form>
         </div>
     </div>
