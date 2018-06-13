@@ -46,9 +46,9 @@ def questions(username, question_number):
             write_to_file("data/answers.txt", request.form["answer"] + "\n")
             with open("data/answers.txt", "r") as file:
                 data = file.read().splitlines()
-                incorrect_answers = []
-                incorrect_answers.append(data)
+                incorrect_answers = data
                 print(incorrect_answers)
+                return render_template("quiz.html", question=question, incorrect_answers = data)
                 
     return render_template("quiz.html", question=question)
     

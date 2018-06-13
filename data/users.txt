@@ -27,3 +27,6 @@ fred
 red
 Hi
 oloa
+Jojo
+Stan
+Jonboy
