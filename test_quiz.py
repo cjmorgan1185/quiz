@@ -23,9 +23,12 @@ with open("data/questions.json","r") as json_data:
 print(question)
 
 """chekcs the answer to the question is correct"""
+score = 0
 
-if "The A-Team" == question['answer']:
+if "The A Team" == question['answer']:
     print("correct")
+    score += 1
+    print(score)
 else:
     print("incorrect")
 

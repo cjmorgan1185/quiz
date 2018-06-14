@@ -1,5 +1,6 @@
 import os
 import json
+from datetime import datetime
 from flask import Flask, redirect, render_template, request
 
 
@@ -57,8 +58,32 @@ def questions(username, question_number):
         incorrect_answers = file.read().splitlines()
         score = len(correct_answers)*5-len(incorrect_answers)
     print(score)
+    
+    if int(question_number) > 5:
+        write_to_file("data/scoreboard.txt", username + "," + str(score) + ",{0},\n".format(datetime.now().strftime("%d-%m-%y %H:%M")))
+        return redirect(username + "/scores")
                 
     return render_template("quiz.html", question=question)
     
+@app.route('/<username>/scores')
+def scores(username):
+    """with open("data/scoreboard.txt", "r") as file:
+        scores = file.read().splitlines()"""
+    name = []
+    score = []
+    time = []
+    
+    with open("data/scoreboard.txt", "r") as f:
+            data = f.read().split(",")
+            
+            for i in range(0,16,3):
+                name.append(data[i])
+                score.append(data[i+1])
+                time.append(data[i+2])
+            print(name, score, time)
+
+
+    return render_template("scoreboard.html", username=username, name=name, score=score, time=time)
+
     
 app.run(host=os.getenv('IP'), port=int(os.getenv('PORT')), debug=True)

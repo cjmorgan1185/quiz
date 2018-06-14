@@ -1,0 +1,3 @@
+keep scores
+create a data table that stores user names, scores and timestamps
+when a user exits the game they are remved from users.txt but still stored in usersscores.txt
