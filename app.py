@@ -67,23 +67,40 @@ def questions(username, question_number):
     
 @app.route('/<username>/scores')
 def scores(username):
-    """with open("data/scoreboard.txt", "r") as file:
-        scores = file.read().splitlines()"""
+    
+    sorted_scores = []
+    
+    #with open("data/scoreboard.txt", "r") as file:
+    #   name, score, time = zip(*[l.split() for l in file.readlines()])
+        
+        #cored = file.read().splitlines()
+        
+        
+    #    print()
+    #   print(sorted_scores)
+        
+        
+        
     name = []
     score = []
     time = []
     
     with open("data/scoreboard.txt", "r") as f:
             data = f.read().split(",")
+            print(data)
             
-            for i in range(0,16,3):
+            for i in range(0,17,3):
                 name.append(data[i])
                 score.append(data[i+1])
                 time.append(data[i+2])
             print(name, score, time)
+            
+            final = zip(name, score, time)
+            sorted_scores = sorted(final, key=lambda final: final[1])
+            name, score, time = zip(*sorted_scores)
 
-
-    return render_template("scoreboard.html", username=username, name=name, score=score, time=time)
+            
+    return render_template("scoreboard.html",username=username, name=name, time=time, score=score)
 
     
 app.run(host=os.getenv('IP'), port=int(os.getenv('PORT')), debug=True)
