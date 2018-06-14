@@ -5,7 +5,8 @@ from flask import Flask, redirect, render_template, request
 
 
 app = Flask(__name__)
-users = []
+correct = []
+incorrect = []
 
 def write_to_file(filename, data):
     """handle the process of writing data to text files"""
@@ -41,27 +42,33 @@ def questions(username, question_number):
         
         if request.form["answer"] == question["answer"]:
             new = int(question_number) + 1
+            correct.append(question["answer"])
             #open('data/incorrect_answers.txt', 'w').close()
-            write_to_file("data/correct_answers.txt", request.form["answer"] + "\n")
+            write_to_file("data/{0}_correct_answers.txt".format(username), request.form["answer"] + "\n")
             return redirect(username + '/' + str(new))
         else:
-            write_to_file("data/incorrect_answers.txt", request.form["answer"] + "\n")
-            with open("data/incorrect_answers.txt", "r") as file:
+            write_to_file("data/{0}_incorrect_answers.txt".format(username), request.form["answer"] + "\n")
+            with open("data/{0}_incorrect_answers.txt".format(username), "r") as file:
                 data = file.read().splitlines()
                 incorrect_answers = data
-            print(incorrect_answers)
+            #print(incorrect_answers)
             return render_template("quiz.html", question=question, incorrect_answers = data)
-                
-    with open("data/correct_answers.txt", "r") as file:
-        correct_answers = file.read().splitlines()
-    with open("data/incorrect_answers.txt", "r") as file:
-        incorrect_answers = file.read().splitlines()
-        score = len(correct_answers)*5-len(incorrect_answers)
-    print(score)
-    
+        
     if int(question_number) > 5:
-        write_to_file("data/scoreboard.txt", username + "," + str(score) + ",{0},\n".format(datetime.now().strftime("%d-%m-%y %H:%M")))
+        
+        with open("data/{0}_correct_answers.txt".format(username), "r") as file:
+            correct_answers = file.read().splitlines()
+        with open("data/{0}_incorrect_answers.txt".format(username), "r") as file:
+            incorrect_answers = file.read().splitlines()
+        
+        user_score = len(correct_answers)*5-len(incorrect_answers)
+        write_to_file("data/scoreboard.txt", username + "," + str(user_score) + ",{0},\n".format(datetime.now().strftime("%d-%m-%y %H:%M")))
         return redirect(username + "/scores")
+    
+    #user_score = len(correct_answers)*5-len(incorrect_answers)
+        #print(score)
+        
+
                 
     return render_template("quiz.html", question=question)
     
@@ -69,38 +76,30 @@ def questions(username, question_number):
 def scores(username):
     
     sorted_scores = []
-    
-    #with open("data/scoreboard.txt", "r") as file:
-    #   name, score, time = zip(*[l.split() for l in file.readlines()])
-        
-        #cored = file.read().splitlines()
-        
-        
-    #    print()
-    #   print(sorted_scores)
-        
-        
-        
     name = []
     score = []
     time = []
     
     with open("data/scoreboard.txt", "r") as f:
             data = f.read().split(",")
-            print(data)
+            #print(data)
+            #print(len(data))
             
-            for i in range(0,17,3):
+            
+            for i in range(0, len(data)-2, 3):
                 name.append(data[i])
                 score.append(data[i+1])
                 time.append(data[i+2])
-            print(name, score, time)
+            #print(name, score, time)
+
             
             final = zip(name, score, time)
-            sorted_scores = sorted(final, key=lambda final: final[1])
+            sorted_scores = sorted(final, key=lambda final: final[1], reverse=True)
+            #print(sorted_scores)
             name, score, time = zip(*sorted_scores)
 
             
-    return render_template("scoreboard.html",username=username, name=name, time=time, score=score)
+    return render_template("scoreboard.html",username=username, name=name, time=time, score=score, x=len(data))
 
     
 app.run(host=os.getenv('IP'), port=int(os.getenv('PORT')), debug=True)
