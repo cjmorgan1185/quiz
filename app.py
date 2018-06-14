@@ -5,7 +5,7 @@ from flask import Flask, redirect, render_template, request
 
 app = Flask(__name__)
 users = []
-    
+
 def write_to_file(filename, data):
     """handle the process of writing data to text files"""
     with open(filename, "a") as file:
@@ -40,15 +40,23 @@ def questions(username, question_number):
         
         if request.form["answer"] == question["answer"]:
             new = int(question_number) + 1
-            open('data/answers.txt', 'w').close()
+            #open('data/incorrect_answers.txt', 'w').close()
+            write_to_file("data/correct_answers.txt", request.form["answer"] + "\n")
             return redirect(username + '/' + str(new))
         else:
-            write_to_file("data/answers.txt", request.form["answer"] + "\n")
-            with open("data/answers.txt", "r") as file:
+            write_to_file("data/incorrect_answers.txt", request.form["answer"] + "\n")
+            with open("data/incorrect_answers.txt", "r") as file:
                 data = file.read().splitlines()
                 incorrect_answers = data
-                print(incorrect_answers)
-                return render_template("quiz.html", question=question, incorrect_answers = data)
+            print(incorrect_answers)
+            return render_template("quiz.html", question=question, incorrect_answers = data)
+                
+    with open("data/correct_answers.txt", "r") as file:
+        correct_answers = file.read().splitlines()
+    with open("data/incorrect_answers.txt", "r") as file:
+        incorrect_answers = file.read().splitlines()
+        score = len(correct_answers)*5-len(incorrect_answers)
+    print(score)
                 
     return render_template("quiz.html", question=question)
     
