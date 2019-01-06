@@ -12,7 +12,8 @@
     <h1>Well done {{ username }} you scored {{ users_score }}</h1>
     <div class="container">
         <div class="row">
-            <div class="col-md-4 offset-md-4">
+            <div class="scoreboard col-10 offset-1">
+                <h4>Leaderboard</h4>
                 <table style="width:100%">
                     <tr>
                         <th>Name</th>
@@ -31,7 +32,18 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <button id="startAgain" action = "{{ url_for('index') }}">Start Again</button>
+        </div>
+    </div>
 </body>
 
+<script>
+    document.getElementById("startAgain").onclick = 
+    function startAgain() {
+        window.location.href='https://quiz-game-cjmorgan1185.c9users.io';
+    };
+</script>
 
 </html>

@@ -1,14 +1,10 @@
 Chris
-Peter
-yoni
-New
-Player1
+Chris1
+Chris2
 Jo
-Player2
+test
+test2
 Leia
-A
-B
-C
-E
-Chris M
-Chris 1
+gali
+Christ
+Galia

@@ -15,7 +15,32 @@ def write_to_file(filename, data):
 
 @app.route ('/', methods=["GET", "POST"])
 def index():
+    """adds scoreboard to home page"""
+    sorted_scores = []
+    name = []
+    score = []
+    time = []
+    
+    with open("data/scoreboard.txt", "r") as f:
+            data = f.read().split(",")
+            #print(data)
+            #print(len(data))
+            
+            
+            for i in range(0, len(data)-2, 3):
+                name.append(data[i])
+                score.append(data[i+1])
+                time.append(data[i+2])
+            #print(name, score, time)
+
+            
+            final = zip(name, score, time)
+            sorted_scores = sorted(final, key=lambda final: final[1], reverse=True)
+            #print(sorted_scores)
+            name, score, time = zip(*sorted_scores)
+            
     """Creates a username and checks this is a unique username. If it is a unique name the name gets added to users.txt"""
+    
     if request.method == "POST":
         with open("data/users.txt", "r") as file:
             lines = file.read().split()
@@ -26,8 +51,9 @@ def index():
             write_to_file("data/users.txt", request.form["username"] + "\n")
             user =  request.form["username"] + "/1"
             return redirect(user)
-    return render_template("index.html") 
+    return render_template("index.html", name=name, time=time, score=score, x=len(data)) 
 
+            
 @app.route('/<username>/<question_number>', methods=['GET', 'POST'])
 def questions(username, question_number):
     question = {}
@@ -44,6 +70,7 @@ def questions(username, question_number):
             new = int(question_number) + 1
             correct.append(question["answer"])
             #open('data/incorrect_answers.txt', 'w').close()
+            write_to_file("data/{0}_incorrect_answers.txt".format(username),"")
             write_to_file("data/{0}_correct_answers.txt".format(username), request.form["answer"] + "\n")
             return redirect(username + '/' + str(new))
         else:
@@ -63,17 +90,18 @@ def questions(username, question_number):
         
         user_score = len(correct_answers)*5-len(incorrect_answers)
         write_to_file("data/scoreboard.txt", username + "," + str(user_score) + ",{0},\n".format(datetime.now().strftime("%d-%m-%y %H:%M")))
+        os.remove("data/{0}_correct_answers.txt".format(username))
+        os.remove("data/{0}_incorrect_answers.txt".format(username))
         return redirect(username + "/scores")
     
-    #user_score = len(correct_answers)*5-len(incorrect_answers)
-        #print(score)
-        
 
                 
     return render_template("quiz.html", question=question)
     
 @app.route('/<username>/scores')
 def scores(username):
+    
+    
     
     sorted_scores = []
     name = []

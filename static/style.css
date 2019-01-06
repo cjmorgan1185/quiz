@@ -1,16 +1,28 @@
 body{
     background-color:#7795c4;
     background-size: cover;
+    margin-top: 20px
 }
 
 h1 {
-    color: #002054;
+    color: white;
     text-align: center;
+    background-color: #002054;
+    margin: 10px 10px
 }
 
 h2{
     color: #002054;
     text-align: center;   
+}
+
+.intro{
+    padding: 10px;
+    margin: 5px;
+    border: 5px solid #00264d;
+    background-color: #f2f2f2;
+    text-align: center;
+    color: #001a33;
 }
 
 .clues{
@@ -36,10 +48,9 @@ form{
 }
 
 button{
-    margin-top: 10px;
+    display: block;
+    margin: 0 auto;
 }
-
-
 
 .prev_answers{
     margin-top: 25px;
@@ -53,3 +64,38 @@ button{
     text-align: center;
     margin-top: 50px;
 }
+
+td, th{
+    /*border: 1px solid black;*/
+    text-align: center
+}
+
+button{
+    text-align: center;
+    margin-left: 40%;
+}
+.scoreboard, th{
+    border: 2px solid black;
+    background-color: #00264d;
+    color: white;
+}
+
+.scoreboard, td{
+    border: 2px solid black;
+    background-color: #e0e0d1;
+    color: #00264d;
+}
+
+.scoreboard{
+    border: 5px solid #00264d;
+    background-color: #f2f2f2;
+    margin-top: 10px;
+}
+
+h4{
+    text-align: center;
+}
+
+
+
+

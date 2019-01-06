@@ -1,40 +1,25 @@
 [{
         "question": "1",
-        "clue1": "H.M. 'Howlin' Man' Murdock",
-        "clue2": "B. A. Baracus",
-        "clue3": " John 'Hannibal' Smith",
-        "clue4": "Templeton 'Faceman' Peck.",
-        "answer":"The A Team"
+        "clue": "I have a mouth but cannot eat, I have a bed but never sleep, I can run but have no legs, What am I?",
+        "answer":"River"
     },
     {
         "question": "2",
-        "clue1": "Doc",
-        "clue2": "Bashful",
-        "clue3": "Dopey",
-        "clue4": "Grumpy",
-        "answer":"Snow White"   
+        "clue": "Who makes it, has no need of it. Who buys it, has no use for it.  Who uses it can neither see nor feel it. What is it?",
+        "answer":"Coffin"   
     },
         {
         "question": "3",
-        "clue1": "Luke Skywalker",
-        "clue2": "Leia Organa",
-        "clue3": "Han Solo",
-        "clue4": "Darth Vader",
-        "answer":"Star Wars"   
+        "clue": "What has hands but can not clap?",
+        "answer":"Clock"   
     },
         {
         "question": "4",
-        "clue1": "Ironman",
-        "clue2": "Thor",
-        "clue3": "The Hulk",
-        "clue4": "Captain America",
-        "answer":"The Avengers"   
+        "clue": "What has a head and a tail, but no body?",
+        "answer":"Coin"   
     },
         {
         "question": "5",
-        "clue1": "Peter Venkman",
-        "clue2": "Raymond Stantz",
-        "clue3": "Egon Spengler",
-        "clue4": "Winston Zeddemore",
-        "answer":"Ghostbusters"   
+        "clue": "What gets wetter and wetter the more it dries?",
+        "answer":"Towel"   
     }]

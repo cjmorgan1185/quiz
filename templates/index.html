@@ -10,20 +10,40 @@
 </head>
 
 <body>
-    <h2>Welcome to the connection quiz! please enter a username to continue</h2>
+    <h1>RIDDLE ME THIS! </h1>
+    <div class="intro">
+        <p>Welcome to RIDDLE ME THIS!! The aim of the game is to answer as many riddles correctly as possible. You will recieve 5 points for every correct answer! but be warned, you will lose 1 point for every incorrect guess!! Please enter a unique username
+            to play.
+        </p>
+    </div>
+
     <div class="row">
         <div class="col-md-4 offset-md-4">
             <form method="POST">
-                <input type="text" id="username" name="username" placeholder ="username"><br>
-                <button id="submit">Submit</button>
+                <input type="text" id="username" name="username" placeholder="username">
+                <input type="Submit" id="submit" value="Submit">
             </form>
         </div>
     </div>
 
     <div class="container">
         <div class="row">
-            <div class="leaderboard col-md-6 offset-md-3">
-                <p>Scores will appear here</p>
+            <div class="scoreboard col-10 offset-1">
+                <h4>Leaderboard</h4>
+                <table style="width:100%">
+                    <tr>
+                        <th>Name</th>
+                        <th>Score</th>
+                        <th>Date</th>
+                    </tr>
+                    {% for i in range(0,x,1) %}
+                    <tr>
+                        <td> {{ name[i] }} </td>
+                        <td> {{ score[i] }} </td>
+                        <td> {{ time[i] }} </td>
+                    </tr>
+                    {% endfor %}
+                </table>
             </div>
         </div>
     </div>

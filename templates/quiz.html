@@ -9,51 +9,37 @@
 </head>
 
 <body>
-    <h1>Whats the connection?</h1>
-    
-    
+    <h1>Riddle me this?</h1>
+
+
     <div class="container clues">
         <div class="row">
-            <div class="col-md-6">
-                <div class="box col-md-6 offset-md-6"><p>{{ question.clue1 }}</p></div>
-            </div>
-            <div class="col-md-6">
-                <div class="box col-md-6 "><p>{{ question.clue2 }}</p></div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="box col-md-6 offset-md-6"><p>{{ question.clue3 }}</p></div>
-            </div>
-            <div class="col-md-6">    
-                <div class="box col-md-6 "><p>{{ question.clue4 }}</p></div>
+            <div class="col-12 col-lg-8 offset-lg-2">
+                <div class="box">
+                    <p>{{ question.clue }}</p>
+                </div>
             </div>
         </div>
     </div>
-    
-    
-    <div class="row">
-        <div class="col-md-4 offset-md-4">
-            <form method="POST">
-                <input type="text" id="answer" name="answer" placeholder="Answer"><br>
-                <button id="answer">Submit Answer</button>
-            </form>
-        </div>
-    </div>
-    
-    <div class="container">
 
+
+    <form method="POST">
+        <input type="text" id="answer" name="answer" placeholder="Answer"><br>
+        <input type="Submit" id="answer" value="Submit">
+    </form>
+
+
+    <div class="container">
         <div class="row">
             <div class="prev_answers col-md-4 offset-md-4">
                 <h4>Incorrect Answers</h4>
-            {% for i in incorrect_answers %}
-            <p>{{ i }}</p>
-            {% endfor %}
+                {% for i in incorrect_answers %}
+                <p>{{ i }}</p>
+                {% endfor %}
             </div>
         </div>
-
     </div>
-    
+
 
 
 </body>
